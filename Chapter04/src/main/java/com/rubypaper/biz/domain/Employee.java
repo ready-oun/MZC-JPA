@@ -24,7 +24,7 @@ public class Employee {
 	@Column(length = 25, nullable = false)
 	private String name;
 
-	// optional = false 를 넣으면 기본 left outer join에서 innerjoin으로 바뀌었음 
+	// optional = false 를 넣으면 기본 left outer join에서 inner join으로 바뀌었음 
 	@ManyToOne(optional = true, fetch = FetchType.EAGER)//다:1 관계( 다:사원, 1:부서, 여러명의 사원이 한 부서에 속함)
 	@JoinColumn(name="DEPT_ID")//S_EMP table 생성시 FK 설정
 	private Department dept;
