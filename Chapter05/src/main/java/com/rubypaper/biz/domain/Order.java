@@ -28,4 +28,12 @@ public class Order {
 	@JoinTable(name="S_ITEM", joinColumns = @JoinColumn(name = "ORD_ID"), 
 		inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"), uniqueConstraints = @UniqueConstraint(columnNames = {"ORD_ID", "PRODUCT_ID"}))
 	private List<Product> productList = new ArrayList<Product>();
+	
+	// Product 등록할 대, 상품 쪽에 Order 정보도 설정
+	public void addProduct(Product product) {
+		productList.add(product);
+		
+		// 반대쪽 Product에도 주문에 대한 참조 정보 설정
+		product.getOrderList().add(this);
+	}
 }
