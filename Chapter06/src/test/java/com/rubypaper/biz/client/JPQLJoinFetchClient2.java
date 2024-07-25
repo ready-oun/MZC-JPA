@@ -28,14 +28,16 @@ public class JPQLJoinFetchClient2 {
 	private static void dataSelect(EntityManagerFactory emf) {
 		EntityManager em = emf.createEntityManager();
 		
-		String jpql = "SELECT e FROM Employee e LEFT JOIN FETCH e.dept";
-		TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
+		String jpql = "SELECT d.name, MAX(e.salary), MIN(e.salary), " 
+				+ "SUM(e.salary), COUNT(e.salary), AVG(e.salary) "
+				+ "FROM Employee e JOIN e.dept d "
+				+ "GROUP BY d.name";
+		TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
 		
-		List<Employee> resultList = query.getResultList();
-		System.out.println("검색된 직원 목록");
-		for (Employee employee : resultList) {
-			System.out.println(employee.getName());
-
+		List<Object[]> resultList = (List<Object[]>) query.getResultList();
+		System.out.println("부서별 급여 정보");
+		for (Object[] result : resultList) {
+			String deptName = (Double)
 		}
 		
 		em.close();
