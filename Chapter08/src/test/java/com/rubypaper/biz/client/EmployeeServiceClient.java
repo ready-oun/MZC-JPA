@@ -8,14 +8,20 @@ import com.rubypaper.biz.service.DepartmentService;
 import com.rubypaper.biz.service.EmployeeService;
 
 /**
- * @author admin
+ * 
  *
  */
 public class EmployeeServiceClient {
 
 	public static void main(String[] args) {
+		/** Spring Container 생성
+		 *  - 개발자가 객체 생성 및 관리를 다른 누군가에게 위임하고 싶음
+		 *  -> new 연산자를 사용하지 않게 되어, 약결합으로 구현이 가능해짐 
+		 */
 		GenericXmlApplicationContext container = new GenericXmlApplicationContext("spring/business-layer.xml");
-		
+		/*
+		 * spring container에게 객체 생성을 위임하여, 필요한 객체는 불러서 사용하면 됨  
+		 */
 		DepartmentService deptService = (DepartmentService) container.getBean("deptService");
 		
 		EmployeeService employeeService = (EmployeeService) container.getBean("empService");

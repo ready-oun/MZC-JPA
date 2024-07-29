@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- 컴포넌트 스캔 설정 -->
+	<!-- 컴포넌트 스캔(@Service, @Repository 객체 생성 -->
 	<context:component-scan   base-package="com.rubypaper.biz" />
 	
 	<!-- JPA 구현체 -->
@@ -57,6 +57,9 @@
 	<aop:config>
 		<aop:pointcut id="txPointcut"
 		 expression="execution(* com.rubypaper.biz.service..*Service.*(..))" />
+		 
+		 <!-- 어드바이스(부기능)는 트랜잭션 관리기능이고,
+		 	  어드바이스(부기능)을 적용받는 대상을 명시 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 

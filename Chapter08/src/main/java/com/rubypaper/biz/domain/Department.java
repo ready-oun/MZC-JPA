@@ -26,6 +26,11 @@ public class Department {
 	
 	private String name;
 	
+	/*
+	 * @OneToMany
+	 * - fetch
+	 */
+	
 	@OneToMany(mappedBy = "dept", fetch = FetchType.EAGER)
 	private List<Employee> employeeList = new ArrayList<Employee>();
 }

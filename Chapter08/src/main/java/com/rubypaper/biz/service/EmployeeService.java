@@ -30,8 +30,8 @@ public class EmployeeService {
 		empRepository.getEmployee(employee);
 	}
 	
-	public List<Employee> getEmployeeList(Employee employee) {
-		return empRepository.getEmployeeList(employee);
+	public List<Employee> getEmployeeList() {
+		return empRepository.getEmployeeList();
 	}
 	
 	
