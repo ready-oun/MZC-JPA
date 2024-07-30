@@ -20,6 +20,12 @@ import lombok.ToString;
 @ToString(exclude = {"order", "product"})
 public class Item {
 
+	/*
+	 * 비식별 관계 설정.
+	 * id => PK
+	 * order, product => FK
+	 */
+	
 	// 주문내역 아이디
 	@Id	@GeneratedValue
 	@Column(name = "ITEM_ID")
@@ -39,8 +45,11 @@ public class Item {
 	private int count;
 
 	// 주문내역 생성자
+	// Item 의 생성자가 호출 => 주문이 발생.
 	public Item(Product product, int count) {
+		// 주문한 상품 정보
 		this.product = product;
+		// 주문한 상품 수량
 		this.count = count;
 
 		// 주문이 생성된 순간 주문 수량만큼 재고를 감소한다.
