@@ -29,10 +29,10 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	// 주문 등록 화면으로 이동
+	// 주문 등록 화면으로 이동함
 	@GetMapping("/order/new")
 	public String insertOrder(Model model) {
-		// 주문 등록 화면에서 사용할 회원 목록과 상품 목록 조회
+		// 주문 등록 화면에서 사용할 회원 목록과 상품 목록 조회함
 		model.addAttribute("customerList", customerService.getCustomerList());
 		model.addAttribute("productList", productService.getProductList());
 		return "order/insertOrder";
